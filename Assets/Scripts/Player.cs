@@ -8,14 +8,15 @@ public class Player : MonoBehaviour
     public Controller2D controller2D;
     Vector3 velocity;
     float velocityXSmoothing;
-    float movingDirection;
+    int movingDirection;
 
     // Vertical speeds
     public float maxJumpHeight = 5;
     public float minJumpHeight = 1;
     public float timeToJumpApex = 0.4f;
-    float accelerationTimeAirborne = .2f;
-    float accelerationTimeGrounded = .1f;
+    float accelerationTimeAirborne = .4f;
+    float accelerationTimeGrounded = .3f;
+    bool jumping = false;
 
     // Acceleration due to gravity
     float gravity;
@@ -25,9 +26,15 @@ public class Player : MonoBehaviour
     // Horizontal speeds
     float moveSpeed = 10f;
 
+    private SpriteAnimationController animationController;
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
+        animationController = GetComponent<SpriteAnimationController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         controller2D = GetComponent<Controller2D>();
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -54,6 +61,40 @@ public class Player : MonoBehaviour
         if (controller2D.collisions.above || controller2D.collisions.below)
         {
             velocity.y = 0;
+            jumping = false;
+        }
+
+        if(controller2D.collisions.left || controller2D.collisions.right)
+        {
+            velocity.x = 0;
+        }
+
+        UpdateAnimations();
+    }
+
+    private void UpdateAnimations()
+    {
+        if (jumping)
+        {
+            animationController.PlayAnimation("Jumping");
+            return;
+        }
+
+        if (!controller2D.collisions.below)
+        {
+            animationController.StopCurrentAnimation();
+            return;
+        }
+
+        spriteRenderer.flipX = controller2D.collisions.faceDir == -1;
+
+        if (movingDirection != 0)
+        {
+            animationController.PlayAnimation("Walking");
+        }
+        else
+        {
+            animationController.PlayAnimation("Idle");
         }
     }
 
@@ -65,6 +106,7 @@ public class Player : MonoBehaviour
         }
 
         velocity.y = maxJumpVelocity;
+        jumping = true;
     }
 
     public void OnJumpInputUp()
@@ -83,6 +125,7 @@ public class Player : MonoBehaviour
     void CalculateVelocity()
     {
         float targetVelocityX = movingDirection * moveSpeed;
+
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller2D.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
         // Need to multiply gravity by Time.deltaTime since it is an acceleration

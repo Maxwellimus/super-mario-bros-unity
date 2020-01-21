@@ -1750,6 +1750,10 @@ GameObject:
   - component: {fileID: 1964162255}
   - component: {fileID: 1964162258}
   - component: {fileID: 1964162259}
+  - component: {fileID: 1964162260}
+  - component: {fileID: 1964162261}
+  - component: {fileID: 1964162262}
+  - component: {fileID: 1964162263}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1895,3 +1899,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcec2a738bfa408fa4af53795bb77f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1964162260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964162253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf1218b3076d45ebaeb6b734f0bdbda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1964162261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964162253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2241c733a08144b97ab51e06c8d2ce5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: Walking
+  animationSpeed: 0.05
+  loop: 1
+  sprites:
+  - {fileID: -2878613631147964412, guid: 44b29effaec2946d3ad22aecf4a850d5, type: 3}
+  - {fileID: -7416062099470292067, guid: 44b29effaec2946d3ad22aecf4a850d5, type: 3}
+  - {fileID: -1001176574989948214, guid: 44b29effaec2946d3ad22aecf4a850d5, type: 3}
+  - {fileID: 3132731399858670415, guid: 44b29effaec2946d3ad22aecf4a850d5, type: 3}
+  animationPlaying: 0
+--- !u!114 &1964162262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964162253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2241c733a08144b97ab51e06c8d2ce5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: Idle
+  animationSpeed: 1
+  loop: 0
+  sprites:
+  - {fileID: -2878613631147964412, guid: 44b29effaec2946d3ad22aecf4a850d5, type: 3}
+  animationPlaying: 0
+--- !u!114 &1964162263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964162253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2241c733a08144b97ab51e06c8d2ce5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: Jumping
+  animationSpeed: 1
+  loop: 0
+  sprites:
+  - {fileID: -7197093264373978929, guid: 44b29effaec2946d3ad22aecf4a850d5, type: 3}
+  animationPlaying: 0

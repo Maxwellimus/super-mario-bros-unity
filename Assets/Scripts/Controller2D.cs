@@ -5,14 +5,6 @@ using UnityEngine;
 public class Controller2D : RaycastController
 {
     public CollisionInfo collisions;
-    private SpriteRenderer spriteRenderer;
-
-    // Start is called before the first frame update
-    override public void Start()
-    {
-        base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     private void HandleVerticalCollisions(ref Vector2 moveAmount)
     {        
@@ -60,7 +52,11 @@ public class Controller2D : RaycastController
 
             if (hit)
             {
-                
+                if (System.Math.Abs(hit.distance) < Mathf.Epsilon)
+                {
+                    continue;
+                }
+
                 moveAmount.x = (hit.distance - skinWidth) * directionX;
                 rayLength = hit.distance;
 
@@ -103,12 +99,16 @@ public class Controller2D : RaycastController
         if (System.Math.Abs(moveDistance.x) > Mathf.Epsilon)
         {
             collisions.faceDir = (int)Mathf.Sign(moveDistance.x);
-            spriteRenderer.flipX = collisions.faceDir == -1;
         }
 
         collisions.Reset();
         HandleHorizontalCollisions(ref moveDistance);
-        HandleVerticalCollisions(ref moveDistance);
+
+        if(System.Math.Abs(moveDistance.y) > Mathf.Epsilon)
+        {
+            HandleVerticalCollisions(ref moveDistance);
+        }
+
         DrawDebugCollisions();
         transform.Translate(moveDistance);
     }
