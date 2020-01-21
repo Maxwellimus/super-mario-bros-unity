@@ -13,6 +13,6 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = new Vector3(focusObject.transform.position.x, focusObject.transform.position.y, -10);
+        transform.position = new Vector3(focusObject.transform.position.x, transform.position.y, -10);
     }
 }

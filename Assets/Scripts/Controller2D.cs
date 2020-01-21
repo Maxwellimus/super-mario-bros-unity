@@ -2,46 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : RaycastController
+public class Controller2D : RaycastController
 {
-    public float moveSpeed = 5.0f;
-    public float jumpForce = 10.0f;
-
-    private float gravity = 5.0f;
-    private CollisionInfo collisions;
-    private float horizontal = 0;
-    private Vector2 velocity;
+    public CollisionInfo collisions;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     override public void Start()
     {
         base.Start();
-        Debug.Log("Starting Player");
-        velocity = Vector2.zero;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Zero out each frame to compute new values
-        velocity = Vector2.zero;
-
-        horizontal = Input.GetAxisRaw("Horizontal");
-        velocity.x = horizontal * moveSpeed * Time.deltaTime;
-        velocity.y = -1 * gravity * Time.deltaTime;
-    }
-
-    private void FixedUpdate()
-    {
-        UpdateRaycastOrigins();
-        HandleVerticalCollisions(ref velocity);
-        HandleHorizontalCollisions(ref velocity);
-        transform.position += new Vector3(velocity.x, velocity.y);
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void HandleVerticalCollisions(ref Vector2 moveAmount)
-    {
-        float directionY = Mathf.Sign(moveAmount.y);
+    {        
+        int directionY = (int)Mathf.Sign(moveAmount.y);
         float rayLength = Mathf.Abs(moveAmount.y) + skinWidth;
 
         for (int i = 0; i < verticalRayCount; i++)
@@ -51,7 +26,7 @@ public class CharacterController : RaycastController
             rayOrigin += Vector2.right * (verticalRaySpacing * i + moveAmount.x);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
 
-            Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.yellow);
 
             if (hit)
             {
@@ -67,7 +42,7 @@ public class CharacterController : RaycastController
 
     void HandleHorizontalCollisions(ref Vector2 moveAmount)
     {
-        float directionX = collisions.faceDir;
+        int directionX = collisions.faceDir;
         float rayLength = Mathf.Abs(moveAmount.x) + skinWidth;
 
         if (Mathf.Abs(moveAmount.x) < skinWidth)
@@ -81,10 +56,11 @@ public class CharacterController : RaycastController
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.red);
+            Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.yellow);
 
             if (hit)
             {
+                
                 moveAmount.x = (hit.distance - skinWidth) * directionX;
                 rayLength = hit.distance;
 
@@ -95,24 +71,46 @@ public class CharacterController : RaycastController
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void DrawDebugCollisions()
     {
-        Debug.Log("Collided");
+        if (collisions.above)
+        {
+            // Draw collision above
+            Debug.DrawLine(raycastOrigins.topLeft, raycastOrigins.topRight, Color.green, 3);
+        }
+
+        if (collisions.below)
+        {
+            // Draw collision below
+            Debug.DrawLine(raycastOrigins.bottomLeft, raycastOrigins.bottomRight, Color.green, 3);
+        }
+
+        if (collisions.left)
+        {
+            // Draw collision left
+            Debug.DrawLine(raycastOrigins.bottomLeft, raycastOrigins.topLeft, Color.green, 3);
+        }
+
+        if (collisions.right)
+        {
+            // Draw collision right
+            Debug.DrawLine(raycastOrigins.bottomRight, raycastOrigins.topRight, Color.green, 3);
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Move(Vector2 moveDistance)
     {
-        Debug.Log("Collision 2d");
-    }
+        if (System.Math.Abs(moveDistance.x) > Mathf.Epsilon)
+        {
+            collisions.faceDir = (int)Mathf.Sign(moveDistance.x);
+            spriteRenderer.flipX = collisions.faceDir == -1;
+        }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("OnTriggerEnter");
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("OnTriggerEnter2D");
+        collisions.Reset();
+        HandleHorizontalCollisions(ref moveDistance);
+        HandleVerticalCollisions(ref moveDistance);
+        DrawDebugCollisions();
+        transform.Translate(moveDistance);
     }
 
     public struct CollisionInfo
