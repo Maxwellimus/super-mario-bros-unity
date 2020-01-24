@@ -70,6 +70,22 @@ public class Player : MonoBehaviour
         }
 
         UpdateAnimations();
+        GameObject ceilingObject = controller2D.HitCeilingObject();
+
+        if (ceilingObject)
+        {
+            if(ceilingObject.tag == "BrickBlock")
+            {
+                BrickBlock brickBlock = ceilingObject.GetComponent<BrickBlock>();
+                brickBlock.HitBlock();
+            }
+
+            if (ceilingObject.tag == "QuestionBlock")
+            {
+                QuestionBlock questionBlock = ceilingObject.GetComponent<QuestionBlock>();
+                questionBlock.HitBlock();
+            }
+        }
     }
 
     private void UpdateAnimations()
