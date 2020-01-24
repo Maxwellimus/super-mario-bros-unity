@@ -5,6 +5,30 @@ using UnityEngine;
 public class Controller2D : RaycastController
 {
     public CollisionInfo collisions;
+    public bool shouldShowDebugCollisions = false;
+
+    const float groundedRadius = .2f;
+    public Transform groundCheck;
+    public Transform ceilingCheck;
+    public bool isGrounded;
+
+    private void setIsGrounded()
+    {
+        isGrounded = false;
+        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, collisionMask);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                isGrounded = true;
+                Debug.DrawLine(raycastOrigins.bottomLeft, raycastOrigins.bottomRight, Color.magenta);
+                return;
+            }
+                
+        }
+    }
 
     private void HandleVerticalCollisions(ref Vector2 moveAmount)
     {        
@@ -109,8 +133,13 @@ public class Controller2D : RaycastController
             HandleVerticalCollisions(ref moveDistance);
         }
 
-        DrawDebugCollisions();
+        if (shouldShowDebugCollisions)
+        {
+            DrawDebugCollisions();
+        }
+        
         transform.Translate(moveDistance);
+        setIsGrounded();
     }
 
     public struct CollisionInfo
