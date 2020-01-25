@@ -10,15 +10,9 @@ public class Block : MonoBehaviour
     float bounceTime = 0.1f;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         startPos = transform.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public virtual void HitBlock()

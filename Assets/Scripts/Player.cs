@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     float accelerationTimeAirborne = .4f;
     float accelerationTimeGrounded = .3f;
     bool jumping = false;
+    bool hitBlockOnJump = false;
 
     // Acceleration due to gravity
     float gravity;
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour
         {
             velocity.y = 0;
             jumping = false;
+            hitBlockOnJump = false;
         }
 
         if(controller2D.collisions.left || controller2D.collisions.right)
@@ -70,20 +72,26 @@ public class Player : MonoBehaviour
         }
 
         UpdateAnimations();
-        GameObject ceilingObject = controller2D.HitCeilingObject();
 
-        if (ceilingObject)
+        if (!hitBlockOnJump)
         {
-            if(ceilingObject.tag == "BrickBlock")
-            {
-                BrickBlock brickBlock = ceilingObject.GetComponent<BrickBlock>();
-                brickBlock.HitBlock();
-            }
+            GameObject ceilingObject = controller2D.HitCeilingObject();
 
-            if (ceilingObject.tag == "QuestionBlock")
+            if (ceilingObject)
             {
-                QuestionBlock questionBlock = ceilingObject.GetComponent<QuestionBlock>();
-                questionBlock.HitBlock();
+                if (ceilingObject.tag == "BrickBlock")
+                {
+                    BrickBlock brickBlock = ceilingObject.GetComponent<BrickBlock>();
+                    brickBlock.HitBlock();
+                    hitBlockOnJump = true;
+                }
+
+                if (ceilingObject.tag == "QuestionBlock")
+                {
+                    QuestionBlock questionBlock = ceilingObject.GetComponent<QuestionBlock>();
+                    questionBlock.HitBlock();
+                    hitBlockOnJump = true;
+                }
             }
         }
     }
