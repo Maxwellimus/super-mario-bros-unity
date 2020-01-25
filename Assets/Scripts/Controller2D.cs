@@ -7,15 +7,28 @@ public class Controller2D : RaycastController
     public CollisionInfo collisions;
 
     [SerializeField] private Transform ceilingCheck;
+    [SerializeField] private Transform groundCheck;
     const float ceilingRadius = 0.2f;
-
-    bool movingUp = false;
 
     public GameObject HitCeilingObject()
     {
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(ceilingCheck.position, ceilingRadius, collisionMask);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+                return colliders[i].gameObject;
+        }
+
+        return null;
+    }
+
+    public GameObject HitGroundObject()
+    {
+        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, ceilingRadius, collisionMask);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
