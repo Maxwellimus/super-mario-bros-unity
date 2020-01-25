@@ -6,9 +6,16 @@ using UnityEngine;
 [RequireComponent(typeof(Sprite[]))]
 public class SpriteAnimation : MonoBehaviour
 {
+    public enum Type
+    {
+        Loop,
+        Bounce,
+        Single,
+    }
+
     public string animationName;
     public float animationSpeed;
-    public bool loop;
+    public Type animationType;
     public Sprite[] sprites;
 
     [HideInInspector]
@@ -17,6 +24,7 @@ public class SpriteAnimation : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float deltaTime;
     private int frame;
+    private bool animatingForward = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,15 +46,39 @@ public class SpriteAnimation : MonoBehaviour
             while (deltaTime >= animationSpeed)
             {
                 deltaTime -= animationSpeed;
-                frame++;
-                if (loop)
-                    frame %= sprites.Length;
-                //Max limit
-                else if (frame >= sprites.Length)
-                    frame = sprites.Length - 1;
+                frame = GetNextFrame(frame);
             }
             //Animate sprite with selected frame
             spriteRenderer.sprite = sprites[frame];
+        }
+    }
+
+    int GetNextFrame(int currentFrame)
+    {
+
+        switch (animationType)
+        {
+            case Type.Bounce:
+                if(animatingForward && currentFrame == sprites.Length - 1)
+                {
+                    animatingForward = false;
+                } else if(!animatingForward && currentFrame == 0)
+                {
+                    animatingForward = true;
+                }
+
+                return animatingForward ? currentFrame + 1 : currentFrame - 1;
+            case Type.Loop:
+                return (currentFrame + 1) % sprites.Length;
+            case Type.Single:
+                currentFrame++;
+                if (currentFrame >= sprites.Length)
+                {
+                    return sprites.Length - 1;
+                }
+                return currentFrame;
+            default:
+                return 0;
         }
     }
 

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1677196103656596927}
   - component: {fileID: 7505946565891164987}
   - component: {fileID: 586409112686717021}
+  - component: {fileID: 1903356932039368021}
+  - component: {fileID: 3783964337274766308}
   m_Layer: 10
   m_Name: QuestionBlock
   m_TagString: QuestionBlock
@@ -121,3 +123,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1903356932039368021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185575401984641366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf1218b3076d45ebaeb6b734f0bdbda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3783964337274766308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185575401984641366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2241c733a08144b97ab51e06c8d2ce5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: Idle
+  animationSpeed: 0.15
+  animationType: 1
+  sprites:
+  - {fileID: -5159582696314263177, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
+  - {fileID: -5159582696314263177, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
+  - {fileID: 4415645311118192978, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
+  - {fileID: 5635421049429586798, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
+  animationPlaying: 0
