@@ -15,12 +15,6 @@ public class Block : MonoBehaviour
         startPos = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public virtual void HitBlock()
     {
         StartCoroutine(BounceBlock(transform));

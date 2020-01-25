@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 586409112686717021}
   - component: {fileID: 1903356932039368021}
   - component: {fileID: 3783964337274766308}
+  - component: {fileID: 8776228182645410192}
   m_Layer: 10
   m_Name: QuestionBlock
   m_TagString: QuestionBlock
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5159582696314263177, guid: cc0d3002315524d1ea02e7ed405b00dd,
+  m_Sprite: {fileID: 5174614549752656282, guid: 550fc1660d9804938957c2bda27dd23b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc433bd2f305c43a5aacb3501a511d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 4215484639747211275, guid: cbf45fd8d036a41a2bc3056bf6535922,
+    type: 3}
+  questionBoxItem: 1
 --- !u!61 &586409112686717021
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -151,8 +155,27 @@ MonoBehaviour:
   animationSpeed: 0.15
   animationType: 1
   sprites:
-  - {fileID: -5159582696314263177, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
-  - {fileID: -5159582696314263177, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
-  - {fileID: 4415645311118192978, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
-  - {fileID: 5635421049429586798, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
+  - {fileID: 5174614549752656282, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
+  - {fileID: 5174614549752656282, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
+  - {fileID: -8065364282215548965, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
+  - {fileID: 5878566171991757604, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
+  - {fileID: -3193242621514833133, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
+  animationPlaying: 0
+--- !u!114 &8776228182645410192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185575401984641366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2241c733a08144b97ab51e06c8d2ce5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: Empty
+  animationSpeed: 1
+  animationType: 2
+  sprites:
+  - {fileID: 8566376777407337978, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
   animationPlaying: 0

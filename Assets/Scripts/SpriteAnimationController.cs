@@ -9,7 +9,7 @@ public class SpriteAnimationController : MonoBehaviour
     private Dictionary<string, SpriteAnimation> spriteAnimationDictionary;
     private string currentPlayingAnimation;
 
-    void Start()
+    void Awake()
     {
         spriteAnimations = GetComponents<SpriteAnimation>();
 
@@ -23,13 +23,12 @@ public class SpriteAnimationController : MonoBehaviour
 
     public void PlayAnimation(string name)
     {
-        if(currentPlayingAnimation != null && name != currentPlayingAnimation)
+        if (currentPlayingAnimation != null && name != currentPlayingAnimation)
         {
-            Debug.Log("Switching animation from " + currentPlayingAnimation + " to " + name);
             StopCurrentAnimation();
         }
 
-        if(!spriteAnimationDictionary[name].animationPlaying)
+        if (!spriteAnimationDictionary[name].animationPlaying)
         {
             spriteAnimationDictionary[name].PlayAnimation();
             currentPlayingAnimation = name;
