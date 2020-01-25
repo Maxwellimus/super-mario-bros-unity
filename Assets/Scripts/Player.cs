@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
         if (!hitBlockOnJump)
         {
             GameObject ceilingObject = controller2D.HitCeilingObject();
+            GameObject groundObject = controller2D.HitGroundObject();
 
             if (ceilingObject)
             {
@@ -91,6 +92,17 @@ public class Player : MonoBehaviour
                     QuestionBlock questionBlock = ceilingObject.GetComponent<QuestionBlock>();
                     questionBlock.HitBlock();
                     hitBlockOnJump = true;
+                }
+            }
+
+            if (groundObject)
+            {
+                if(groundObject.tag == "Enemy")
+                {
+                    Enemy enemy = groundObject.GetComponent<Enemy>();
+                    enemy.Damage();
+                    hitBlockOnJump = true;
+                    Jump(maxJumpVelocity / 2);
                 }
             }
         }
@@ -124,13 +136,7 @@ public class Player : MonoBehaviour
 
     public void OnJumpInputDown()
     {
-        if(!controller2D.collisions.below)
-        {
-            return;
-        }
-
-        velocity.y = maxJumpVelocity;
-        jumping = true;
+        Jump(maxJumpVelocity);
     }
 
     public void OnJumpInputUp()
@@ -144,6 +150,17 @@ public class Player : MonoBehaviour
     public void OnHorizontalMove(int direction)
     {
         movingDirection = direction;
+    }
+
+    private void Jump(float speed)
+    {
+        if (!controller2D.collisions.below)
+        {
+            return;
+        }
+
+        velocity.y = speed;
+        jumping = true;
     }
 
     void CalculateVelocity()
