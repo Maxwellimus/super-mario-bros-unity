@@ -9,8 +9,6 @@ public class Coin : MonoBehaviour
     void Start()
     {
         animationController = GetComponent<SpriteAnimationController>();
-
-        
     }
 
     // Update is called once per frame

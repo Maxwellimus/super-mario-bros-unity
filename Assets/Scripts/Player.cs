@@ -14,8 +14,8 @@ public class Player : MonoBehaviour
     public float maxJumpHeight = 5;
     public float minJumpHeight = 1;
     public float timeToJumpApex = 0.4f;
-    float accelerationTimeAirborne = .4f;
-    float accelerationTimeGrounded = .3f;
+    float accelerationTimeAirborne = .2f;
+    float accelerationTimeGrounded = .1f;
     bool jumping = false;
     bool hitBlockOnJump = false;
 
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     float gravity;
     float maxJumpVelocity;
     float minJumpVelocity;
+    float enemyJumpVelocity;
 
     // Horizontal speeds
     float moveSpeed = 10f;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+        enemyJumpVelocity = maxJumpVelocity / 2;
 
         Debug.Log("gravity: " + gravity);
         Debug.Log("minJumpVelocity: " + minJumpVelocity);
@@ -102,7 +104,8 @@ public class Player : MonoBehaviour
                     Enemy enemy = groundObject.GetComponent<Enemy>();
                     enemy.Damage();
                     hitBlockOnJump = true;
-                    Jump(maxJumpVelocity / 2);
+                    velocity.y = enemyJumpVelocity;
+                    jumping = true;
                 }
             }
         }
