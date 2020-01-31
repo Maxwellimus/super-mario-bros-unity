@@ -16,6 +16,8 @@ public class QuestionBlock : Block
     }
 
     public GameObject coinPrefab;
+    public GameObject mushroomPrefab;
+
     public Content questionBoxItem;
     private int capacity;
 
@@ -66,6 +68,8 @@ public class QuestionBlock : Block
         switch (questionBoxItem)
         {
             case Content.Mushroom:
+                Mushroom mushroom = Instantiate(mushroomPrefab, transform).GetComponent<Mushroom>();
+                StartCoroutine(mushroom.AnimateOutOfBox(transform.position));
                 break;
             case Content.Coin:
             case Content.TenCoin:

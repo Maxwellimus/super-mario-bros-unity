@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2296180397884050111}
   - component: {fileID: 2296180397884050108}
   - component: {fileID: 2296180397884050109}
+  - component: {fileID: 8593625110294681373}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -137,6 +138,12 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
+  itemLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
   ceilingCheck: {fileID: 3774251657424187415}
   groundCheck: {fileID: 1203888740199634758}
 --- !u!114 &2296180397884050104
@@ -235,6 +242,24 @@ MonoBehaviour:
   animationType: 0
   sprites:
   - {fileID: -7197093264373978929, guid: 44b29effaec2946d3ad22aecf4a850d5, type: 3}
+  animationPlaying: 0
+--- !u!114 &8593625110294681373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2296180397884050087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2241c733a08144b97ab51e06c8d2ce5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: IdleBig
+  animationSpeed: 1
+  animationType: 0
+  sprites:
+  - {fileID: 4994048872722746408, guid: 44b29effaec2946d3ad22aecf4a850d5, type: 3}
   animationPlaying: 0
 --- !u!1 &4276623642367798546
 GameObject:

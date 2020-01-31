@@ -6,9 +6,25 @@ public class Controller2D : RaycastController
 {
     public CollisionInfo collisions;
 
+    public LayerMask itemLayerMask;
+    public LayerMask enemyLayerMask;
+
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private Transform groundCheck;
     const float ceilingRadius = 0.2f;
+
+    const float itemOverlapRadius = 0.1f;
+
+    public GameObject HitItem()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, itemOverlapRadius, itemLayerMask);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+                return colliders[i].gameObject;
+        }
+        return null;
+    }
 
     public GameObject HitCeilingObject()
     {
@@ -104,25 +120,25 @@ public class Controller2D : RaycastController
         if (collisions.above)
         {
             // Draw collision above
-            Debug.DrawLine(raycastOrigins.topLeft, raycastOrigins.topRight, Color.green, 3);
+            Debug.DrawLine(raycastOrigins.topLeft, raycastOrigins.topRight, Color.green);
         }
 
         if (collisions.below)
         {
             // Draw collision below
-            Debug.DrawLine(raycastOrigins.bottomLeft, raycastOrigins.bottomRight, Color.green, 3);
+            Debug.DrawLine(raycastOrigins.bottomLeft, raycastOrigins.bottomRight, Color.green);
         }
 
         if (collisions.left)
         {
             // Draw collision left
-            Debug.DrawLine(raycastOrigins.bottomLeft, raycastOrigins.topLeft, Color.green, 3);
+            Debug.DrawLine(raycastOrigins.bottomLeft, raycastOrigins.topLeft, Color.green);
         }
 
         if (collisions.right)
         {
             // Draw collision right
-            Debug.DrawLine(raycastOrigins.bottomRight, raycastOrigins.topRight, Color.green, 3);
+            Debug.DrawLine(raycastOrigins.bottomRight, raycastOrigins.topRight, Color.green);
         }
     }
 

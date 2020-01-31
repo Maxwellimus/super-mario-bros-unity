@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9185575401984641366
+--- !u!1 &456549554156365252
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5966259259725104280}
-  - component: {fileID: 1677196103656596927}
-  - component: {fileID: 7505946565891164987}
-  - component: {fileID: 586409112686717021}
-  - component: {fileID: 1903356932039368021}
-  - component: {fileID: 3783964337274766308}
-  - component: {fileID: 8776228182645410192}
-  m_Layer: 10
-  m_Name: QuestionBlock(Coin)
-  m_TagString: QuestionBlock
+  - component: {fileID: 456549554156365274}
+  - component: {fileID: 456549554156365253}
+  - component: {fileID: 4428109058564080541}
+  - component: {fileID: 2384473612404608250}
+  - component: {fileID: 7889924795731098207}
+  m_Layer: 14
+  m_Name: Mushroom
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5966259259725104280
+--- !u!4 &456549554156365274
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185575401984641366}
+  m_GameObject: {fileID: 456549554156365252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 2, z: 0}
+  m_LocalPosition: {x: 14.98, y: 2.97, z: -59.689888}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1677196103656596927
+--- !u!212 &456549554156365253
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185575401984641366}
+  m_GameObject: {fileID: 456549554156365252}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,8 +71,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 5174614549752656282, guid: 550fc1660d9804938957c2bda27dd23b,
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 4076770619571186029, guid: 550fc1660d9804938957c2bda27dd23b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -86,30 +84,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7505946565891164987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185575401984641366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc433bd2f305c43a5aacb3501a511d67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 4215484639747211275, guid: cbf45fd8d036a41a2bc3056bf6535922,
-    type: 3}
-  mushroomPrefab: {fileID: 456549554156365252, guid: e165d92ebf51441dd87a4fa42dbba265,
-    type: 3}
-  questionBoxItem: 1
---- !u!61 &586409112686717021
+--- !u!61 &4428109058564080541
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185575401984641366}
+  m_GameObject: {fileID: 456549554156365252}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -129,55 +110,44 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1903356932039368021
+--- !u!114 &2384473612404608250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185575401984641366}
+  m_GameObject: {fileID: 456549554156365252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf1218b3076d45ebaeb6b734f0bdbda, type: 3}
+  m_Script: {fileID: 11500000, guid: 1feb19f21f9a747f7bc5621c3f32d141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3783964337274766308
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 3840
+  horizontalRayCount: 0
+  verticalRayCount: 0
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider: {fileID: 0}
+  itemLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ceilingCheck: {fileID: 0}
+  groundCheck: {fileID: 0}
+--- !u!114 &7889924795731098207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185575401984641366}
+  m_GameObject: {fileID: 456549554156365252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2241c733a08144b97ab51e06c8d2ce5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b5f52c83e0bc4cc6ac16a8f280845f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationName: Idle
-  animationSpeed: 0.15
-  animationType: 1
-  sprites:
-  - {fileID: 5174614549752656282, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
-  - {fileID: 5174614549752656282, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
-  - {fileID: -8065364282215548965, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
-  - {fileID: 5878566171991757604, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
-  - {fileID: -3193242621514833133, guid: 550fc1660d9804938957c2bda27dd23b, type: 3}
-  animationPlaying: 0
---- !u!114 &8776228182645410192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185575401984641366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2241c733a08144b97ab51e06c8d2ce5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationName: Empty
-  animationSpeed: 1
-  animationType: 2
-  sprites:
-  - {fileID: 8566376777407337978, guid: cc0d3002315524d1ea02e7ed405b00dd, type: 3}
-  animationPlaying: 0
+  controller2D: {fileID: 2384473612404608250}

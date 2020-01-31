@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -10,12 +11,14 @@ public class Player : MonoBehaviour
     float velocityXSmoothing;
     int movingDirection;
 
+    bool marioIsBig = false;
+
     // Vertical speeds
     public float maxJumpHeight = 5;
     public float minJumpHeight = 1;
     public float timeToJumpApex = 0.4f;
     float accelerationTimeAirborne = .2f;
-    float accelerationTimeGrounded = .1f;
+    float accelerationTimeGrounded = .15f;
     bool jumping = false;
     bool hitBlockOnJump = false;
 
@@ -52,6 +55,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateVelocity();
+
+        if(transform.position.y < -4)
+        {
+            SceneManager.LoadScene("Main");
+        }
+
+        Vector2 S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
+        gameObject.GetComponent<BoxCollider2D>().size = S;
+        //gameObject.GetComponent<BoxCollider2D>().offset = new Vector2((S.x / 2), 0);
     }
 
     private void FixedUpdate()
@@ -109,10 +121,26 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        GameObject itemObject = controller2D.HitItem();
+        if (itemObject)
+        {
+            if(itemObject.tag == "Mushroom")
+            {
+                MakeMarioBig();
+                Destroy(itemObject);
+            }
+        }
     }
 
     private void UpdateAnimations()
     {
+        if (marioIsBig)
+        {
+            animationController.PlayAnimation("IdleBig");
+            return;
+        }
+
         if (jumping)
         {
             animationController.PlayAnimation("Jumping");
@@ -164,6 +192,13 @@ public class Player : MonoBehaviour
 
         velocity.y = speed;
         jumping = true;
+    }
+
+    private void MakeMarioBig()
+    {
+        Debug.Log("Make Mario Big!");
+        marioIsBig = true;
+        UpdateAnimations();
     }
 
     void CalculateVelocity()
