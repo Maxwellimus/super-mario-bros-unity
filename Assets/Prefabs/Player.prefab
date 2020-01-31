@@ -137,6 +137,12 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
+  itemLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
   ceilingCheck: {fileID: 3774251657424187415}
   groundCheck: {fileID: 1203888740199634758}
 --- !u!114 &2296180397884050104

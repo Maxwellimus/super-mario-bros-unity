@@ -109,6 +109,16 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        GameObject itemObject = controller2D.HitItem();
+        if (itemObject)
+        {
+            if(itemObject.tag == "Mushroom")
+            {
+                MakeMarioBig();
+                Destroy(itemObject);
+            }
+        }
     }
 
     private void UpdateAnimations()
@@ -164,6 +174,11 @@ public class Player : MonoBehaviour
 
         velocity.y = speed;
         jumping = true;
+    }
+
+    private void MakeMarioBig()
+    {
+        Debug.Log("Make Mario Big!");
     }
 
     void CalculateVelocity()
