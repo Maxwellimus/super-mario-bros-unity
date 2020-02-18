@@ -153,11 +153,7 @@ public class Controller2D : RaycastController
 
         collisions.Reset();
         HandleHorizontalCollisions(ref moveDistance);
-
-        if(System.Math.Abs(moveDistance.y) > Mathf.Epsilon)
-        {
-            HandleVerticalCollisions(ref moveDistance);
-        }
+        HandleVerticalCollisions(ref moveDistance);
 
         DrawDebugCollisions();
         transform.Translate(moveDistance);
