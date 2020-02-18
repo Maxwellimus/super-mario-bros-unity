@@ -6,7 +6,7 @@ public class Block : MonoBehaviour
 {
     private Vector3 startPos;
 
-    float bounceHeight = 0.1f;
+    float bounceHeight = 0.5f;
     float bounceTime = 0.1f;
 
     // Start is called before the first frame update

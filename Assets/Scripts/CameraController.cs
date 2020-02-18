@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     {
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         transform.position = new Vector3(focusObject.transform.position.x, transform.position.y, -10);
     }

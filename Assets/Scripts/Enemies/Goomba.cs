@@ -29,7 +29,6 @@ public class Goomba : Enemy
     // Update is called once per frame
     void Update()
     {
-        CalculateVelocity();
         if (alive)
         {
             animationController.PlayAnimation("Walking");
@@ -44,6 +43,7 @@ public class Goomba : Enemy
 
     void FixedUpdate()
     {
+        CalculateVelocity();
         if (alive)
         {
             controller2D.Move(velocity * Time.fixedDeltaTime);

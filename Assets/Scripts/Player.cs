@@ -54,19 +54,29 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CalculateVelocity();
-
         if(transform.position.y < -4)
         {
             SceneManager.LoadScene("Main");
         }
 
-        Vector2 S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
-        gameObject.GetComponent<BoxCollider2D>().size = S;
-        //gameObject.GetComponent<BoxCollider2D>().offset = new Vector2((S.x / 2), 0);
+        SetupColliderSize();
     }
 
     private void FixedUpdate()
+    {
+        CalculateVelocity();
+        MoveMario();
+    }
+
+    private void SetupColliderSize()
+    {
+        float colliderHeight = marioIsBig ? 1.5f:0.75f;
+        float ceiling = (int)(colliderHeight + 1);
+        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0, (colliderHeight - ceiling) / 2);
+        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1, colliderHeight);
+    }
+
+    private void MoveMario()
     {
         controller2D.Move(velocity * Time.fixedDeltaTime);
 
@@ -133,17 +143,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private string AnimationForSize(string baseAnimation)
+    {
+        return baseAnimation + (marioIsBig ? "Big" : "");
+    }
+
     private void UpdateAnimations()
     {
-        if (marioIsBig)
-        {
-            animationController.PlayAnimation("IdleBig");
-            return;
-        }
-
         if (jumping)
         {
-            animationController.PlayAnimation("Jumping");
+            animationController.PlayAnimation(AnimationForSize("Jumping"));
             return;
         }
 
@@ -157,11 +166,11 @@ public class Player : MonoBehaviour
 
         if (movingDirection != 0)
         {
-            animationController.PlayAnimation("Walking");
+            animationController.PlayAnimation(AnimationForSize("Walking"));
         }
         else
         {
-            animationController.PlayAnimation("Idle");
+            animationController.PlayAnimation(AnimationForSize("Idle"));
         }
     }
 

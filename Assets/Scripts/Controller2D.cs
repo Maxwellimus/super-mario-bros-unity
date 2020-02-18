@@ -15,6 +15,8 @@ public class Controller2D : RaycastController
 
     const float itemOverlapRadius = 0.1f;
 
+    private Vector3 moveDistance;
+
     public GameObject HitItem()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, itemOverlapRadius, itemLayerMask);
