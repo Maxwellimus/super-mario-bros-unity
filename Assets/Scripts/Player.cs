@@ -205,9 +205,11 @@ public class Player : MonoBehaviour
 
     private void MakeMarioBig()
     {
-        Debug.Log("Make Mario Big!");
         marioIsBig = true;
         UpdateAnimations();
+
+        // Move Mario up half a unit so he doesn't collide with the floor
+        controller2D.Move(new Vector2(0, 0.5f));
     }
 
     void CalculateVelocity()
