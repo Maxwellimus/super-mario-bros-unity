@@ -36,6 +36,7 @@ public class Goomba : Enemy
         else
         {
             animationController.PlayAnimation("Dead");
+            gameObject.layer = LayerMask.NameToLayer("Default");
             Destroy(gameObject, 1);
         }
         
